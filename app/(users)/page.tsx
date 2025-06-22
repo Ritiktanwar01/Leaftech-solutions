@@ -1,13 +1,53 @@
+export const dynamic = "force-dynamic";
+export const fetchCache = "force-no-store";
+
 import Link from "next/link"
 import { ArrowRight, Code, Database, Globe, Laptop, Smartphone } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import HeroSection from "../components/hero-section"
-import ServiceCard from "../components/service-card"
-import ProjectCard from "../components/project-card"
-import ContactForm from "../components/contact-form"
-import AnimatedCounter from "../components/animated-counter"
+import HeroSection from "../../components/hero-section"
+import ServiceCard from "../../components/service-card"
+import ProjectCard from "../../components/project-card"
+import ContactForm from "../../components/contact-form"
+import AnimatedCounter from "../../components/animated-counter"
 
-export default function Home() {
+
+async function FetchProjects () {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/projects`, {
+      credentials: "include",
+      cache: "no-store",
+    })
+    if (!res.ok) {
+      throw new Error("Failed to fetch data")
+    }
+    const data = await res.json()
+    return data
+  }
+
+
+  async function fetchContactData() {
+  let res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/contact`, {
+    next: { revalidate: 60 }
+  })
+  if (!res.ok) {
+    throw new Error("Failed to fetch contact data")
+  }
+  return res.json()
+}
+
+
+export default async function Home() {
+
+  interface Project {
+    id: string;
+    image: string;
+    title: string;
+    category: string;
+    description: string;
+  }
+
+  const contactData = await fetchContactData()
+
+  const projects = await FetchProjects()
   return (
     <main className="flex min-h-screen flex-col">
       <HeroSection />
@@ -70,19 +110,19 @@ export default function Home() {
         <div className="container px-4 md:px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div>
-              <AnimatedCounter end={150} duration={2} />
+              <AnimatedCounter end={50} duration={2} />
               <p className="mt-2 text-gray-400">Projects Completed</p>
             </div>
             <div>
-              <AnimatedCounter end={50} duration={2} />
+              <AnimatedCounter end={40} duration={2} />
               <p className="mt-2 text-gray-400">Happy Clients</p>
             </div>
             <div>
-              <AnimatedCounter end={10} duration={2} />
+              <AnimatedCounter end={5} duration={2} />
               <p className="mt-2 text-gray-400">Years Experience</p>
             </div>
             <div>
-              <AnimatedCounter end={25} duration={2} />
+              <AnimatedCounter end={20} duration={2} />
               <p className="mt-2 text-gray-400">Team Members</p>
             </div>
           </div>
@@ -101,24 +141,18 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <ProjectCard
-              image="/placeholder.svg?height=400&width=600"
-              title="E-Commerce Platform"
-              category="Web Development"
-              description="A fully-featured e-commerce platform with inventory management, payment processing, and customer analytics."
-            />
-            <ProjectCard
-              image="/placeholder.svg?height=400&width=600"
-              title="Healthcare CRM"
-              category="Custom CRM"
-              description="A specialized CRM system for healthcare providers to manage patient relationships and streamline operations."
-            />
-            <ProjectCard
-              image="/placeholder.svg?height=400&width=600"
-              title="Logistics Mobile App"
-              category="Mobile Application"
-              description="A mobile application for a logistics company to track deliveries, manage fleet, and optimize routes."
-            />
+
+            {
+              projects.slice(0,3).map((project: Project) => (
+                <ProjectCard
+                  key={project.title}
+                  image={project.image}
+                  title={project.title}
+                  category={project.category}
+                  description={project.description}
+                />
+              ))
+            }
           </div>
 
           <div className="mt-12 text-center">
@@ -155,7 +189,7 @@ export default function Home() {
                   </div>
                   <div className="ml-4">
                     <p className="text-base font-medium text-gray-900">Phone</p>
-                    <p className="text-base text-gray-500">+1 (555) 123-4567</p>
+                    <p className="text-base text-gray-500">{contactData.phone.main}</p>
                   </div>
                 </div>
                 <div className="flex items-center">
@@ -171,7 +205,7 @@ export default function Home() {
                   </div>
                   <div className="ml-4">
                     <p className="text-base font-medium text-gray-900">Email</p>
-                    <p className="text-base text-gray-500">info@techsolutions.com</p>
+                    <p className="text-base text-gray-500">{contactData.email.general}</p>
                   </div>
                 </div>
                 <div className="flex items-center">
@@ -193,7 +227,7 @@ export default function Home() {
                   </div>
                   <div className="ml-4">
                     <p className="text-base font-medium text-gray-900">Address</p>
-                    <p className="text-base text-gray-500">123 Tech Street, Innovation City, TC 12345</p>
+                    <p className="text-base text-gray-500">{contactData.address.street}, {contactData.address.city}, {contactData.address.state} {contactData.address.zip} ({contactData.address.country})</p>
                   </div>
                 </div>
               </div>

@@ -7,7 +7,7 @@ import { ReduxProvider } from "@/lib/redux/provider"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Lap Tech Solutions - Custom Software & Web Development",
+  title: "Leaf Tech Solutions - Custom Software & Web Development",
   description:
     "We build custom software solutions, websites, mobile apps, and CRM systems that help businesses streamline operations and drive growth.",
   generator: 'Ritik Tanwar'

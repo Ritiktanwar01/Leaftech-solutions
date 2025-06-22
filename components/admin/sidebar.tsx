@@ -14,6 +14,7 @@ import {
   SidebarMenuItem,
   SidebarProvider,
 } from "@/components/ui/sidebar"
+import Image from "next/image"
 import { logout } from "@/lib/redux/slices/authSlice"
 import { useToast } from "@/components/ui/use-toast"
 
@@ -56,8 +57,7 @@ export default function AdminSidebar() {
         <SidebarHeader>
           <div className="flex h-14 items-center px-4">
             <Link href="/admin/dashboard" className="flex items-center gap-2 font-semibold">
-              <Package className="h-6 w-6" />
-              <span>TechSolutions</span>
+               <Image src={"/logo.png"} alt="Leaf tech Logo" width={100} height={50} />
             </Link>
           </div>
         </SidebarHeader>

@@ -19,7 +19,19 @@ export default function ContactForm() {
     setIsSubmitting(true)
 
     // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500))
+    await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/contact/enquiry`,{
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: (e.currentTarget.elements.namedItem("name") as HTMLInputElement)?.value,
+        email: (e.currentTarget.elements.namedItem("email") as HTMLInputElement)?.value,
+        subject: (e.currentTarget.elements.namedItem("subject") as HTMLInputElement)?.value,
+        message: (e.currentTarget.elements.namedItem("message") as HTMLTextAreaElement)?.value,
+        service: (e.currentTarget.elements.namedItem("service") as HTMLSelectElement)?.value,
+      }),
+    })
 
     toast({
       title: "Message sent!",
@@ -27,7 +39,6 @@ export default function ContactForm() {
     })
 
     setIsSubmitting(false)
-    e.currentTarget.reset()
   }
 
   return (

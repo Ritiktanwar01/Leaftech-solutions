@@ -1,12 +1,15 @@
+export const dynamic = "force-dynamic";
+export const fetchCache = "force-no-store";
+
 import Link from "next/link"
 import { ArrowRight, CheckCircle2, Code, Database, Globe, Laptop, Server, Smartphone } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import ServiceCard from "../../components/service-card"
+import ServiceCard from "@/components/service-card"
 import Image from "next/image"
 
 export default function ServicesPage() {
   return (
-    <main className="pt-20">
+    <main className="pt-20 mt-20">
       {/* Hero Section */}
       <section className="py-20 bg-black text-white">
         <div className="container px-4 md:px-6 mx-auto">
@@ -101,7 +104,7 @@ export default function ServicesPage() {
             </div>
             <div>
               <img
-                src="/placeholder.svg?height=600&width=600"
+                src="/lappy.png"
                 alt="Web Development"
                 className="w-full h-auto rounded-lg shadow-xl"
               />
@@ -116,7 +119,7 @@ export default function ServicesPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="order-2 lg:order-1">
               <img
-                src="/placeholder.svg?height=600&width=600"
+                src="/AndroidDev.jpg"
                 alt="Mobile Applications"
                 className="w-full h-auto rounded-lg shadow-xl"
               />
@@ -207,7 +210,7 @@ export default function ServicesPage() {
             </div>
             <div>
               <img
-                src="/placeholder.svg?height=600&width=600"
+                src="/CRM.png"
                 alt="Custom CRM Solutions"
                 className="w-full h-auto rounded-lg shadow-xl"
               />

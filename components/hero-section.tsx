@@ -97,7 +97,7 @@ export default function HeroSection() {
   }, [])
 
   return (
-    <section className="relative h-screen flex items-center overflow-hidden bg-white">
+    <section className="relative h-screen flex items-center overflow-hidden bg-white mt-20">
       <canvas ref={canvasRef} className="absolute inset-0 z-0" />
       <div className="container px-4 md:px-6 z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
@@ -126,11 +126,11 @@ export default function HeroSection() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="hidden lg:block"
           >
-            {/* <img
-              src="/placeholder.svg?height=600&width=600"
+            <img
+              src="/Hero.jfif"
               alt="Tech Solutions Illustration"
-              className="w-full h-auto"
-            /> */}
+              className="w-full h-auto rounded"
+            />
           </motion.div>
         </div>
       </div>

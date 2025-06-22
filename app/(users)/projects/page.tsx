@@ -1,21 +1,13 @@
-"use client"
+export const dynamic = "force-dynamic";
+export const fetchCache = "force-no-store";
+
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import ProjectCard from "../../components/project-card"
-import { useEffect,useState } from "react"
+import ProjectCard from "@/components/project-card"
 
-export default function ProjectsPage() {
-  interface Project {
-    id: string;
-    image: string;
-    title: string;
-    category: string;
-    description: string;
-  }
 
-  const [projects, setProjects] = useState<Project[]>([])
-  const FetchProjects = async () => {
+async function FetchProjects () {
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/projects`, {
       credentials: "include",
       cache: "no-store",
@@ -24,14 +16,22 @@ export default function ProjectsPage() {
       throw new Error("Failed to fetch data")
     }
     const data = await res.json()
-    console.log(data)
-    setProjects(data)
+    return data
   }
-  useEffect(() => {
-    FetchProjects()
-  }, [])
+
+export default async function ProjectsPage() {
+  interface Project {
+    id: string;
+    image: string;
+    title: string;
+    category: string;
+    description: string;
+  }
+
+  const projects = await FetchProjects()
+
   return (
-    <main className="pt-20">
+    <main className="pt-20 mt-20">
       {/* Hero Section */}
       <section className="py-20 bg-black text-white">
         <div className="container px-4 md:px-6 mx-auto">
@@ -49,7 +49,7 @@ export default function ProjectsPage() {
         <div className="container px-4 md:px-6 mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {
-              projects.map((project,i) => (
+              projects.map((project: Project) => (
                 <ProjectCard
                   key={project.title}
                   image={project.image}
@@ -75,7 +75,7 @@ export default function ProjectsPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="bg-white rounded-lg overflow-hidden shadow-lg">
               <img
-                src="/placeholder.svg?height=400&width=800"
+                src="/tradeup.jfif"
                 alt="E-commerce case study"
                 className="w-full h-64 object-cover"
               />
@@ -98,7 +98,7 @@ export default function ProjectsPage() {
 
             <div className="bg-white rounded-lg overflow-hidden shadow-lg">
               <img
-                src="/placeholder.svg?height=400&width=800"
+                src="/DocSat.jfif"
                 alt="Healthcare case study"
                 className="w-full h-64 object-cover"
               />
@@ -136,31 +136,31 @@ export default function ProjectsPage() {
             <div className="bg-white p-6 rounded-lg shadow-md">
               <div className="flex items-center mb-4">
                 <div className="mr-4">
-                  <img src="/placeholder.svg?height=100&width=100" alt="Client" className="w-12 h-12 rounded-full" />
+                  <img src="/Balki.jpg" alt="Client" className="w-12 h-12 rounded-full" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold">Sarah Thompson</h3>
-                  <p className="text-gray-500">CEO, RetailPlus</p>
+                  <h3 className="text-lg font-bold">Balakram Parashar</h3>
+                  <p className="text-gray-500">President, HRSS</p>
                 </div>
               </div>
               <p className="text-gray-600 italic">
-                "TechSolutions transformed our business with their e-commerce platform. Their team was professional,
-                responsive, and delivered exactly what we needed. Our online sales have increased by 200% since launch."
+                "Leaf Teach solutions transformed our Trust with their e-commerce platform. Their team was professional,
+                responsive, and delivered exactly what we needed. Our online donations have increased by 200% since launch."
               </p>
             </div>
 
             <div className="bg-white p-6 rounded-lg shadow-md">
               <div className="flex items-center mb-4">
                 <div className="mr-4">
-                  <img src="/placeholder.svg?height=100&width=100" alt="Client" className="w-12 h-12 rounded-full" />
+                  <img src="/labOwner.jpg" alt="Client" className="w-12 h-12 rounded-full" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold">Dr. James Wilson</h3>
-                  <p className="text-gray-500">Director, MediConnect</p>
+                  <h3 className="text-lg font-bold">Dr. Girraj Sharma</h3>
+                  <p className="text-gray-500">Owner, Laxmi Narayan Path Lab.</p>
                 </div>
               </div>
               <p className="text-gray-600 italic">
-                "The CRM system developed by TechSolutions has revolutionized how we manage patient relationships. The
+                "The CRM system developed by Leaf Tech Solutions has revolutionized how we manage patient relationships. The
                 team took the time to understand our unique challenges and delivered a solution that exceeded our
                 expectations."
               </p>
@@ -169,15 +169,15 @@ export default function ProjectsPage() {
             <div className="bg-white p-6 rounded-lg shadow-md">
               <div className="flex items-center mb-4">
                 <div className="mr-4">
-                  <img src="/placeholder.svg?height=100&width=100" alt="Client" className="w-12 h-12 rounded-full" />
+                  <img src="/SchoolMan.jpg" alt="Client" className="w-12 h-12 rounded-full" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold">Michael Rodriguez</h3>
-                  <p className="text-gray-500">COO, LogiTrack</p>
+                  <h3 className="text-lg font-bold">Pradeep Tanwar</h3>
+                  <p className="text-gray-500">CEO, LogiTrack</p>
                 </div>
               </div>
               <p className="text-gray-600 italic">
-                "Working with TechSolutions on our logistics mobile app was a game-changer. Their expertise in mobile
+                "Working with Leaf Tech Solutions on our logistics mobile app was a game-changer. Their expertise in mobile
                 development and understanding of our industry resulted in an app that has significantly improved our
                 operational efficiency."
               </p>
