@@ -1,5 +1,4 @@
-export const dynamic = "force-dynamic";
-export const fetchCache = "force-no-store";
+
 
 import Link from "next/link"
 import { ArrowRight, CheckCircle2, Code, Database, Globe, Laptop, Server, Smartphone } from "lucide-react"

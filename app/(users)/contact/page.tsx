@@ -1,5 +1,3 @@
-export const dynamic = "force-dynamic";
-export const fetchCache = "force-no-store";
 
 import { Mail, MapPin, Phone } from "lucide-react"
 import ContactForm from "@/components/contact-form"
