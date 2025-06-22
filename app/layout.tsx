@@ -10,7 +10,21 @@ export const metadata: Metadata = {
   title: "Leaf Tech Solutions - Custom Software & Web Development",
   description:
     "We build custom software solutions, websites, mobile apps, and CRM systems that help businesses streamline operations and drive growth.",
-  generator: 'Ritik Tanwar'
+  generator: 'Ritik Tanwar',
+  applicationName: "Leaf Tech Solutions",
+  icons: {
+    icon: "/favicon.ico",},
+  keywords: [
+    "custom software development",
+    "web development",
+    "mobile app development",
+    "CRM systems",
+    "business solutions",
+    "Leaf Tech Solutions",
+    "software engineering",
+    "digital transformation",
+    "business automation"
+  ],
 }
 
 export default function RootLayout({
