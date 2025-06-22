@@ -1,10 +1,12 @@
+export const dynamic = "force-dynamic";
+export const fetchCache = "force-no-store";
 
 "use server"
 import { CheckCircle2 } from "lucide-react"
 
 
 async function FetchData() {
-  const req = await fetch(`${process.env.NEXT_PUBLIC_API_URL}`, {
+  const req = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/about`, {
     next: {
       revalidate: 60
     },
