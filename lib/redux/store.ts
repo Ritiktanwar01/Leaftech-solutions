@@ -5,6 +5,7 @@ import aboutReducer from "./slices/aboutSlice"
 import projectsReducer from "./slices/projectsSlice"
 import enquiriesReducer from "./slices/enquiriesSlice"
 import contactReducer from "./slices/contactSlice"
+import caseStudiesReducer from "./slices/caseStudiesSlice"
 
 export const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ export const store = configureStore({
     projects: projectsReducer,
     enquiries: enquiriesReducer,
     contact: contactReducer,
+    caseStudies: caseStudiesReducer,
   },
 })
 

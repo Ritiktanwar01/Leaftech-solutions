@@ -3,7 +3,7 @@
 import { usePathname } from "next/navigation"
 import Link from "next/link"
 import { useDispatch } from "react-redux"
-import { BarChart, Contact, Home, Info, LogOut, MessageSquare, Package, Settings, User } from "lucide-react"
+import { BarChart, Contact, Home, Info, LogOut, MessageSquare, Package, Settings, User, FileText } from "lucide-react"
 import {
   Sidebar,
   SidebarContent,
@@ -57,7 +57,7 @@ export default function AdminSidebar() {
         <SidebarHeader>
           <div className="flex h-14 items-center px-4">
             <Link href="/admin/dashboard" className="flex items-center gap-2 font-semibold">
-               <Image src={"/logo.png"} alt="Leaf tech Logo" width={100} height={50} />
+              <Image src={"/logo.png"} alt="Leaf tech Logo" width={100} height={50} />
             </Link>
           </div>
         </SidebarHeader>
@@ -84,6 +84,14 @@ export default function AdminSidebar() {
                 <Link href="/admin/projects">
                   <Package className="h-4 w-4" />
                   <span>Projects</span>
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+            <SidebarMenuItem>
+              <SidebarMenuButton asChild isActive={isActive("/admin/case-studies")}>
+                <Link href="/admin/case-studies">
+                  <FileText className="h-4 w-4" />
+                  <span>Case Studies</span>
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
