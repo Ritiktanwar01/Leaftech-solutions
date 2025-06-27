@@ -5,7 +5,13 @@ interface Project {
   title: string
   category: string
   description: string
+  detailedDescription?: string
   image: string
+  images?: string[]
+  technologies?: string[]
+  projectUrl?: string
+  clientName?: string
+  status?: string
   featured: boolean
   createdAt: string
   updatedAt: string
@@ -110,6 +116,26 @@ export const deleteProject = createAsyncThunk("projects/deleteProject", async (i
   }
 })
 
+export const fetchProjectById = createAsyncThunk(
+  "projects/fetchProjectById",
+  async (id: string, { rejectWithValue }) => {
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/projects/${id}`, {
+        credentials: "include",
+      })
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch project")
+      }
+
+      const data = await response.json()
+      return data
+    } catch (error) {
+      return rejectWithValue(error instanceof Error ? error.message : "Failed to fetch project")
+    }
+  },
+)
+
 const projectsSlice = createSlice({
   name: "projects",
   initialState,
@@ -169,6 +195,18 @@ const projectsSlice = createSlice({
         state.loading = false
       })
       .addCase(deleteProject.rejected, (state, action) => {
+        state.loading = false
+        state.error = action.payload as string
+      })
+      .addCase(fetchProjectById.pending, (state) => {
+        state.loading = true
+        state.error = null
+      })
+      .addCase(fetchProjectById.fulfilled, (state, action) => {
+        state.loading = false
+        // You might want to add a selectedProject field to state if needed
+      })
+      .addCase(fetchProjectById.rejected, (state, action) => {
         state.loading = false
         state.error = action.payload as string
       })

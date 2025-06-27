@@ -10,6 +10,7 @@ import AdminHeader from "@/components/admin/header"
 import ProjectForm from "@/components/admin/project-form"
 import type { RootState } from "@/lib/redux/store"
 import { fetchProjects, updateProject, createProject, deleteProject } from "@/lib/redux/slices/projectsSlice"
+import Link from "next/link"
 
 export default function ProjectsPage() {
   const dispatch = useDispatch()
@@ -21,7 +22,13 @@ export default function ProjectsPage() {
     title: "",
     category: "",
     description: "",
+    detailedDescription: "",
     image: "",
+    images: [],
+    technologies: [],
+    projectUrl: "",
+    clientName: "",
+    status: "completed",
     featured: false,
   })
 
@@ -59,7 +66,13 @@ export default function ProjectsPage() {
         title: "",
         category: "",
         description: "",
+        detailedDescription: "",
         image: "",
+        images: [],
+        technologies: [],
+        projectUrl: "",
+        clientName: "",
+        status: "completed",
         featured: false,
       })
       toast({
@@ -201,6 +214,11 @@ export default function ProjectsPage() {
                     <div className="flex space-x-2">
                       <Button variant="outline" size="sm" onClick={() => handleEditProject(index)}>
                         Edit
+                      </Button>
+                      <Button variant="outline" size="sm" asChild>
+                        <Link href={`/projects/${project._id}`} target="_blank">
+                          View
+                        </Link>
                       </Button>
                       <Button variant="destructive" size="sm" onClick={() => handleDeleteProject(project._id)}>
                         Delete
