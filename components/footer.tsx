@@ -1,7 +1,47 @@
+
+
 import Link from "next/link"
 import { Facebook, Instagram, Linkedin, Twitter } from "lucide-react"
 
-export default function Footer() {
+async function fetchContactData() {
+  let res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/contact`, {
+    next: { revalidate: 60 }
+  })
+  if (!res.ok) {
+    throw new Error("Failed to fetch contact data")
+  }
+  return res.json()
+}
+
+type SocialLink = {
+  url: string
+  icon: string
+  _id: string
+}
+
+type ContactData = {
+  address: {
+    street: string
+    city: string
+    country: string
+  }
+  email: {
+    general: string
+    support: string
+    careers: string
+  }
+  phone: {
+    main: string
+    support: string
+  }
+  hours: string
+  socialLinks: SocialLink[]
+  mapEmbed: string
+}
+
+export default async function Footer() {
+
+   const contactData = await fetchContactData()
   return (
     <footer className="bg-black text-white py-12">
       <div className="container px-4 md:px-6 mx-auto">
@@ -94,10 +134,10 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
             <address className="not-italic text-gray-400">
-              <p className="mb-2">123 Tech Street</p>
-              <p className="mb-2">Innovation City, TC 12345</p>
-              <p className="mb-2">Phone: +1 (555) 123-4567</p>
-              <p className="mb-2">Email: info@techsolutions.com</p>
+              <p className="mb-2">{contactData.address.street}</p>
+              <p className="mb-2">{contactData.address.city}</p>
+              <p className="mb-2">Phone: {contactData.phone.main}</p>
+              <p className="mb-2">Email:  {contactData.email.general}</p>
             </address>
           </div>
         </div>
