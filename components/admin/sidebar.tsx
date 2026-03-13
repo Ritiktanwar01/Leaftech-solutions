@@ -80,10 +80,10 @@ export default function AdminSidebar() {
               </SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
-              <SidebarMenuButton asChild isActive={isActive("/admin/projects")}>
-                <Link href="/admin/projects">
+              <SidebarMenuButton asChild isActive={isActive("/admin/products")}>
+                <Link href="/admin/products">
                   <Package className="h-4 w-4" />
-                  <span>Projects</span>
+                  <span>Products</span>
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
