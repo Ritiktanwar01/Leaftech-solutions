@@ -32,7 +32,7 @@ export default function Header() {
       <div className="container px-4 md:px-6 mx-auto">
         <div className="flex items-center justify-between">
           <Link href="/" className="text-2xl font-bold text-black">
-            TechSolutions
+            Leaf Tech Solutions
           </Link>
 
           <nav className="hidden md:flex items-center space-x-8">

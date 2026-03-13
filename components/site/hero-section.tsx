@@ -103,7 +103,7 @@ export default function HeroSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
             <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
-              Innovative <span className="text-black">Tech Solutions</span> for Your Business
+              Innovative <span className="text-black">Leaf Tech Solutions</span> for Your Business
             </h1>
             <p className="mt-6 text-lg text-gray-600 max-w-xl">
               We build custom software solutions, websites, mobile apps, and CRM systems that help businesses streamline
@@ -128,7 +128,7 @@ export default function HeroSection() {
           >
             <img
               src="/placeholder.svg?height=600&width=600"
-              alt="Tech Solutions Illustration"
+              alt="Leaf Tech Solutions Illustration"
               className="w-full h-auto"
             />
           </motion.div>

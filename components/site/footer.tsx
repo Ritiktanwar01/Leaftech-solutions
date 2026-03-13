@@ -7,7 +7,7 @@ export default function Footer() {
       <div className="container px-4 md:px-6 mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
-            <h3 className="text-xl font-bold mb-4">TechSolutions</h3>
+            <h3 className="text-xl font-bold mb-4">Leaf Tech Solutions</h3>
             <p className="text-gray-400 mb-4">Providing innovative technology solutions for businesses of all sizes.</p>
             <div className="flex space-x-4">
               <a href="#" className="text-gray-400 hover:text-white transition-colors">
@@ -97,13 +97,13 @@ export default function Footer() {
               <p className="mb-2">123 Tech Street</p>
               <p className="mb-2">Innovation City, TC 12345</p>
               <p className="mb-2">Phone: +1 (555) 123-4567</p>
-              <p className="mb-2">Email: info@techsolutions.com</p>
+              <p className="mb-2">Email: info@leaftechsolutions.com</p>
             </address>
           </div>
         </div>
 
         <div className="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-400 text-sm">&copy; {new Date().getFullYear()} TechSolutions. All rights reserved.</p>
+          <p className="text-gray-400 text-sm">&copy; {new Date().getFullYear()} Leaf Tech Solutions. All rights reserved.</p>
           <div className="mt-4 md:mt-0 flex space-x-6">
             <Link href="/privacy" className="text-gray-400 hover:text-white text-sm transition-colors">
               Privacy Policy

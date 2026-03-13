@@ -133,7 +133,7 @@ export default async function AboutPage() {
         <div className="container px-4 md:px-6 mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-3xl font-bold mb-6">Why Choose TechSolutions?</h2>
+              <h2 className="text-3xl font-bold mb-6">Why Choose Leaf Tech Solutions?</h2>
               <ul className="space-y-4">
                 <li className="flex items-start">
                   <CheckCircle2 className="h-6 w-6 text-white mr-2 flex-shrink-0" />
