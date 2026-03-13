@@ -45,8 +45,8 @@ export default function Header() {
             <Link href="/services" className="text-gray-900 hover:text-black font-medium">
               Services
             </Link>
-            <Link href="/projects" className="text-gray-900 hover:text-black font-medium">
-              Projects
+            <Link href="/products" className="text-gray-900 hover:text-black font-medium">
+              Products
             </Link>
             <Link href="/contact" className="text-gray-900 hover:text-black font-medium">
               Contact
