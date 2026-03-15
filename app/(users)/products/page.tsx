@@ -20,7 +20,7 @@ async function FetchProjects () {
 
 export default async function ProjectsPage() {
   interface Project {
-    id: string;
+    id: number;
     image: string;
     title: string;
     category: string;
@@ -51,6 +51,7 @@ export default async function ProjectsPage() {
               projects.map((project: Project) => (
                 <ProjectCard
                   key={project.title}
+                  id={project.id}
                   image={project.image}
                   title={project.title}
                   category={project.category}
