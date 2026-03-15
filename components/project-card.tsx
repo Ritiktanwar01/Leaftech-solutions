@@ -6,13 +6,14 @@ import { ArrowRight } from "lucide-react"
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
 
 interface ProjectCardProps {
+  id: number
   image: string
   title: string
   category: string
   description: string
 }
 
-export default function ProjectCard({ image, title, category, description }: ProjectCardProps) {
+export default function ProjectCard({ image, title, category, description,id }: ProjectCardProps) {
   return (
     <motion.div
       whileHover={{ y: -10, transition: { duration: 0.2 } }}
@@ -38,7 +39,7 @@ export default function ProjectCard({ image, title, category, description }: Pro
         </CardContent>
         <CardFooter>
           <Link
-            href={`/projects/${title.toLowerCase().replace(/\s+/g, "-")}`}
+            href={`/product/${id}`}
             className="text-black font-medium inline-flex items-center hover:underline"
           >
             View Project <ArrowRight className="ml-1 h-4 w-4" />
