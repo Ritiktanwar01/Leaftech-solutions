@@ -6,7 +6,7 @@ import { ArrowRight } from "lucide-react"
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
 
 interface ProjectCardProps {
-  id: number
+  id: string
   image: string
   title: string
   category: string
@@ -39,7 +39,7 @@ export default function ProjectCard({ image, title, category, description,id }: 
         </CardContent>
         <CardFooter>
           <Link
-            href={`/product/${id}`}
+            href={`/products/${id}`}
             className="text-black font-medium inline-flex items-center hover:underline"
           >
             View Project <ArrowRight className="ml-1 h-4 w-4" />

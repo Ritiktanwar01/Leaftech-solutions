@@ -20,7 +20,7 @@ async function FetchProjects () {
 
 export default async function ProjectsPage() {
   interface Project {
-    id: number;
+    _id: string;
     image: string;
     title: string;
     category: string;
@@ -28,6 +28,8 @@ export default async function ProjectsPage() {
   }
 
   const projects = await FetchProjects()
+
+  console.log(projects)
 
   return (
     <main className="pt-20 mt-20">
@@ -51,7 +53,7 @@ export default async function ProjectsPage() {
               projects.map((project: Project) => (
                 <ProjectCard
                   key={project.title}
-                  id={project.id}
+                  id={project._id}
                   image={project.image}
                   title={project.title}
                   category={project.category}

@@ -18,9 +18,6 @@ interface ProjectDetail {
   detailedDescription: string
   images: string[]
   technologies: string[]
-  projectUrl?: string
-  clientName?: string
-  status: string
   featured: boolean
   createdAt: string
   updatedAt: string
@@ -33,14 +30,16 @@ export default function ProjectDetailPage() {
   const [loading, setLoading] = useState(true)
   const [selectedImage, setSelectedImage] = useState(0)
 
-  useEffect(() => {
-    const fetchProject = async () => {
+
+  const fetchProject = async () => {
       try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/projects/${params.id}`)
+        const response = await fetch(`http://localhost:7000/api/projects/${params.id}`)
+        
         if (!response.ok) {
           throw new Error("Project not found")
         }
         const data = await response.json()
+        console.log("Fetched project data:", data) // Debug log
         setProject(data)
       } catch (error) {
         console.error("Error fetching project:", error)
@@ -54,6 +53,7 @@ export default function ProjectDetailPage() {
       }
     }
 
+  useEffect(() => {
     if (params.id) {
       fetchProject()
     }
@@ -120,11 +120,11 @@ export default function ProjectDetailPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
+    <div className="min-h-screen bg-gray-50 py-12 mt-20">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="flex items-center justify-between mb-8">
-          <Link href="/projects">
+        <div className="flex items-center justify-between mb-8 px-6">
+          <Link href="/products">
             <Button variant="outline" size="sm">
               <ArrowLeft className="mr-2 h-4 w-4" />
               Back to Projects
@@ -190,12 +190,12 @@ export default function ProjectDetailPage() {
                   <Calendar className="h-4 w-4" />
                   {new Date(project.createdAt).toLocaleDateString()}
                 </div>
-                {project.clientName && (
+                {/* {project.clientName && (
                   <div className="flex items-center gap-1">
                     <User className="h-4 w-4" />
                     {project.clientName}
                   </div>
-                )}
+                )} */}
               </div>
               <p className="text-gray-600 text-lg">{project.description}</p>
             </div>
@@ -225,7 +225,7 @@ export default function ProjectDetailPage() {
             )}
 
             {/* Project Status */}
-            <div>
+            {/* <div>
               <h2 className="text-xl font-semibold mb-3">Project Status</h2>
               <Badge
                 variant={
@@ -238,10 +238,10 @@ export default function ProjectDetailPage() {
               >
                 {project.status?.charAt(0).toUpperCase() + project.status?.slice(1) || "Unknown"}
               </Badge>
-            </div>
+            </div> */}
 
             {/* Project URL */}
-            {project.projectUrl && (
+            {/* {project.projectUrl && (
               <div>
                 <Button asChild className="w-full">
                   <a href={project.projectUrl} target="_blank" rel="noopener noreferrer">
@@ -251,7 +251,7 @@ export default function ProjectDetailPage() {
                   </a>
                 </Button>
               </div>
-            )}
+            )} */}
           </div>
         </div>
 
@@ -260,7 +260,7 @@ export default function ProjectDetailPage() {
           <h2 className="text-2xl font-bold text-gray-900 mb-8">Related Projects</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* This would be populated with related projects */}
-            {[1, 2, 3].map((i) => (
+            {/* {[1, 2, 3].map((i) => (
               <Card key={i} className="group cursor-pointer hover:shadow-lg transition-shadow">
                 <CardContent className="p-0">
                   <div className="aspect-video overflow-hidden rounded-t-lg">
@@ -276,7 +276,7 @@ export default function ProjectDetailPage() {
                   </div>
                 </CardContent>
               </Card>
-            ))}
+            ))} */}
           </div>
         </div>
       </div>
