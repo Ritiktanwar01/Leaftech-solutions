@@ -32,7 +32,7 @@ export default function ProjectDetailPage() {
 
 
   const fetchProject = async () => {
-      try {
+      // try {
         const response = await fetch(`http://localhost:7000/api/projects/${params.id}`)
         
         if (!response.ok) {
@@ -41,16 +41,16 @@ export default function ProjectDetailPage() {
         const data = await response.json()
         console.log("Fetched project data:", data) // Debug log
         setProject(data)
-      } catch (error) {
-        console.error("Error fetching project:", error)
-        toast({
-          title: "Error",
-          description: "Failed to load project details",
-          variant: "destructive",
-        })
-      } finally {
-        setLoading(false)
-      }
+      // } catch (error) {
+      //   console.error("Error fetching project:", error)
+      //   toast({
+      //     title: "Error",
+      //     description: "Failed to load project details",
+      //     variant: "destructive",
+      //   })
+      // } finally {
+      //   setLoading(false)
+      // }
     }
 
   useEffect(() => {
